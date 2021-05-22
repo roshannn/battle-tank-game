@@ -5,19 +5,21 @@ using UnityEngine;
 
 public class TankController : SingletonGeneric<TankController>
 {
-    [SerializeField] Joystick joystick;
+    [SerializeField] Joystick m_MoveJoystick;
+    [SerializeField] Joystick m_TurnJoystick;
     [SerializeField] float m_MoveSpeed;
     [SerializeField] float m_TurnSpeed;
     [SerializeField] Rigidbody m_Rigidbody;
     private float m_Horizontal, m_Vertical;
     private float m_Turn;
-    private void Start()
-    {
-    }
+
     private void Update()
     {
-
         GetInput();
+    }
+
+    private void FixedUpdate()
+    {
         TankMove(m_Vertical);
         TankTurn(m_Horizontal);
     }
@@ -37,8 +39,8 @@ public class TankController : SingletonGeneric<TankController>
 
     private void GetInput()
     {
-        m_Vertical = joystick.Vertical;
-        m_Horizontal = joystick.Horizontal;
+        m_Vertical = m_MoveJoystick.Vertical;
+        m_Horizontal = m_TurnJoystick.Horizontal;
     }
 }
 
