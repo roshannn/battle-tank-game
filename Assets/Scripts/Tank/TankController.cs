@@ -5,14 +5,25 @@ using UnityEngine;
 
 public class TankController : SingletonGeneric<TankController>
 {
+    [SerializeField] TankType tankType;
     [SerializeField] Joystick m_MoveJoystick;
     [SerializeField] Joystick m_TurnJoystick;
     [SerializeField] float m_MoveSpeed;
     [SerializeField] float m_TurnSpeed;
     [SerializeField] Rigidbody m_Rigidbody;
+    [SerializeField] int m_health;
+    private Transform transform;
     private float m_Horizontal, m_Vertical;
     private float m_Turn;
+    private void Awake()
+    {
+        transform = GetComponent<Transform>();
+    }
+    private void Start()
+    {
 
+        CameraController.Instance.SetTarget(transform);
+    }
     private void Update()
     {
         GetInput();
