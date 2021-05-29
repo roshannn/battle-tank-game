@@ -31,7 +31,7 @@ public class TankService : SingletonGeneric<TankService>
     {
         return currentTankModel;
     }
-    public TankController GetTankController(int index = 0) //by default only 1st tankController will be returned 
+    public TankController GetTankController(int index = 0)
     {
         return tanks[index];
     }
