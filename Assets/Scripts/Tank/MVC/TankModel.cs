@@ -21,7 +21,7 @@ public class TankModel
         movementSpeed = tankScriptable.movementSpeed;
         rotationSpeed = tankScriptable.rotationSpeed;
         health = tankScriptable.health;
-        material = tankScriptable.material;`
+        material = tankScriptable.material;
     }
 
     public void SetTankController(TankController _tankController)
