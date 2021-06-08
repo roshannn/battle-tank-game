@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class CameraController : MonoSingletonGeneric<CameraController>
+public class CameraController : MonoBehaviour
 {
     private CinemachineVirtualCamera m_VirtualCamera;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
         m_VirtualCamera = GetComponent<CinemachineVirtualCamera>();
     }
 
     public void SetTarget(Transform target)
     {
+        m_VirtualCamera.m_Lens.NearClipPlane = -20;
         m_VirtualCamera.Follow = target;
     }
 }

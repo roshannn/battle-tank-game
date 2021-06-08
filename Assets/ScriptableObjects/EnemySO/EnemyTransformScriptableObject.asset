@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d028df6b69490cd48aa84254e8d0052b, type: 3}
-  m_Name: BlueBullet
+  m_Script: {fileID: 11500000, guid: f8cb4cafd2ec08f4c8572f1ecb5f4cfd, type: 3}
+  m_Name: EnemyTransformScriptableObject
   m_EditorClassIdentifier: 
-  bulletType: 3
-  bulletPref: {fileID: 7474483915573828125, guid: a66c3613098284246b719c2b0340ee68,
+  spawnPrefab: {fileID: 5074554547732901219, guid: 71ed3a86a43935442b5c1de12b4304ae,
     type: 3}
-  speed: 40
-  damage: 10
-  material: {fileID: 2100000, guid: ff21ff0ea9b18924bb1fdfbb0e58f5cb, type: 2}
+  playerSpawnPrefab: {fileID: 3528975144154663079, guid: 00355270bd0bf3d43bf312dd3ca7eefb,
+    type: 3}

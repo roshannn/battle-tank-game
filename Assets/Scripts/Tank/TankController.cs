@@ -1,53 +1,94 @@
-﻿//non mvc
-
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
-public class TankController: MonoBehaviour
+public class TankController: MonoBehaviour, IDamageable
 {
-    private TankType tankType;
-
+    //UI
+    private Joystick joystick;
+    [SerializeField] private Slider healthSlider;
+    
+    //Input
     private float vertical;
     private float horizontal;
 
-    private float movementSpeed;
-    private float turnSpeed;
-    private Joystick joystick;
-    private Rigidbody rigidBody;
 
+    //Components
+    private Rigidbody rigidBody;
+    public MeshRenderer[] tankParts;
+    
+    //ScriptableObject
+    private TankType tankType;
     private float health;
     private float fireRate;
+    private float movementSpeed;
+    private float turnSpeed;
+
+    //WorldSpecifics
     public Transform fireTransform;
-    public Transform tankTransform;     
-    public MeshRenderer[] tankParts;
+    public Transform tankTransform;
+    public Transform turretTransform;
+
+    //AudioVisual
+    [SerializeField]
+    private ParticleSystem tankExplosionParticle;
+    [SerializeField]
+    private ExplosionController explosionController;
+    [SerializeField]
+    private AudioClip tankExplosion;
+    [SerializeField]
+    private AudioClip tankIdle;
+    [SerializeField]
+    private AudioClip tankDriving;
+
 
     private void Start()
     {
-       
+        TankService tankService = GetComponentInParent<TankService>();
         rigidBody = GetComponent<Rigidbody>();
-        joystick = TankService.Instance.joystick;
+        joystick = tankService.joystick;
     }
 
     private void Update()
     {
+       
         GetInput();
     }
 
+    
     private void GetInput()
     {
         vertical = joystick.Vertical;
         horizontal = joystick.Horizontal;
         if (CrossPlatformInputManager.GetButtonDown("Fire"))
         {
+
             BulletService.Instance.Fire(fireTransform);
         }
     }
 
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
+
+    private void PlayEngineSounds()
+    {
+        if (vertical != 0)
+        {
+            
+            SoundManager.Instance.MovingSoundTrack(tankDriving, 0.1f, 256, false);
+        }
+        else
+        {
+            SoundManager.Instance.MovingSoundTrack(tankIdle, 0.1f, 256, false);
+        }
+    }
     private void FixedUpdate()
     {
+        
         Move(vertical);
+        PlayEngineSounds();
         Turn(horizontal); 
     }
 
@@ -67,6 +108,7 @@ public class TankController: MonoBehaviour
     public void SetValues(TankScriptable tankScriptable)
     {
         health = tankScriptable.health;
+        healthSlider.maxValue = health;
         tankType = tankScriptable.tankType;
         movementSpeed = tankScriptable.movementSpeed;
         turnSpeed = tankScriptable.turnSpeed;
@@ -75,5 +117,17 @@ public class TankController: MonoBehaviour
             tankParts[i].material = tankScriptable.material;
         }
 
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        healthSlider.value = health;
+        if (health <= 0)
+        {
+            SoundManager.Instance.PlaySoundAtTrack1(tankExplosion, 1, 10);
+            explosionController.Explode(tankExplosionParticle);
+            Destroy(gameObject);
+        }
     }
 }

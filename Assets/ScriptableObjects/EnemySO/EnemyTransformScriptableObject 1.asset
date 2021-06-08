@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8cb4cafd2ec08f4c8572f1ecb5f4cfd, type: 3}
+  m_Name: EnemyTransformScriptableObject 1
+  m_EditorClassIdentifier: 
+  spawnPrefab: {fileID: 4591850697325608727, guid: dfa4f4b68f552664498e8c4d5429f3bc,
+    type: 3}
+  playerSpawnPrefab: {fileID: 7095263270714904054, guid: f343512af457ab243a351fc0bfb629d7,
+    type: 3}

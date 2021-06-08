@@ -16,5 +16,5 @@ MonoBehaviour:
   bulletPref: {fileID: 7474483915573828125, guid: a66c3613098284246b719c2b0340ee68,
     type: 3}
   speed: 70
-  damage: 20
+  damage: 8
   material: {fileID: 2100000, guid: 463052f3f7389124f9e7b34b0b931d0d, type: 2}
