@@ -2,15 +2,13 @@
 
 public class BulletService : MonoSingletonGeneric<BulletService>
 {
-    private GameObject bulletPrefab;
-
     private float fireSpeed;
 
     public float damage;
 
     public BulletScriptable[] bulletList;
 
-    private BulletScriptable bulletType;
+    public BulletScriptable bulletType;
 
    
 
@@ -31,13 +29,11 @@ public class BulletService : MonoSingletonGeneric<BulletService>
     {
         return damage;
     }
-    public void Fire(Transform fireTransform)
-    {
-        
-        Debug.Log("bullet fired");
+    public void Fire(Transform fireTransform,BulletScriptable bulletType)
+    {    
         GameObject bullet = Instantiate(bulletType.bulletPref, fireTransform.position, fireTransform.rotation);
         Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
         bulletRigidbody.velocity = fireSpeed * fireTransform.forward;
     }
-
+    
 }

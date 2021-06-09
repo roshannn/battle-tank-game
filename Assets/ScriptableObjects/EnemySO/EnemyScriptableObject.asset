@@ -10,14 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed4edc3b55a394c4f9f1c3b531e34d90, type: 3}
-  m_Name: GreenTank
+  m_Name: EnemyScriptableObject
   m_EditorClassIdentifier: 
-  tankType: 1
+  enemyType: 0
   tankPref: {fileID: 1706988807661405476, guid: 84e31ccb3290b6d45ae686bc8eb635ac,
     type: 3}
-  health: 100
-  movementSpeed: 5
-  turnSpeed: 100
-  fireRate: 20
-  damage: 50
+  health: 40
+  movementSpeed: 20
+  turnSpeed: 50
+  fireRate: 0.5
+  patrollingRadius: 30
+  patrolTime: 5
+  attackDistance: 10
+  bulletType: {fileID: 11400000, guid: 6b9ba9aa8d6521a488b239bb83972090, type: 2}
   material: {fileID: 2100000, guid: c39933e60e73205419d1f79a2af1fdac, type: 2}
+  ScaleMultiplier: 1

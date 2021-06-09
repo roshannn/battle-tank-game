@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyService : MonoBehaviour
+public class EnemyService : MonoSingletonGeneric<EnemyService>
 {
     
     public EnemyScriptable[] enemyList;
@@ -16,7 +16,7 @@ public class EnemyService : MonoBehaviour
     {
         int rand = Random.Range(0, enemyList.Length);
         enemyType = enemyList[rand];
-        Debug.Log("enemy Type" + enemyType.tankType);
+        Debug.Log("enemy Type" + enemyType.enemyType);
     }
     
 
@@ -24,11 +24,8 @@ public class EnemyService : MonoBehaviour
     {
         int rand = Random.Range(0, enemyTransformScriptableList.Count);
         enemyTransformScriptable = enemyTransformScriptableList[rand];
-            
         SetYPosZero();
     }
-
-    
 
     private void SetYPosZero()
     {
@@ -38,5 +35,10 @@ public class EnemyService : MonoBehaviour
         }
     }
 
-    
+    internal void CreateEnemy(Transform spawnPoint)
+    {
+        GameObject go = Instantiate(enemyType.tankPref, spawnPoint.position, Quaternion.identity);
+        EnemyController enemyController = go.GetComponent<EnemyController>();
+        enemyController.InitializeValues(enemyType);
+    }
 }

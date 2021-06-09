@@ -10,5 +10,4 @@ public class BulletScriptable : ScriptableObject
     public float speed;
     public float damage;
 
-    public Material material;
 }

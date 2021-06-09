@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed4edc3b55a394c4f9f1c3b531e34d90, type: 3}
+  m_Name: HardTank
+  m_EditorClassIdentifier: 
+  enemyType: 1
+  tankPref: {fileID: 1706988807661405476, guid: 84e31ccb3290b6d45ae686bc8eb635ac,
+    type: 3}
+  health: 100
+  movementSpeed: 10
+  turnSpeed: 25
+  fireRate: 2
+  patrollingRadius: 30
+  patrolTime: 5
+  attackDistance: 7.5
+  bulletType: {fileID: 11400000, guid: 3ed11d20b28400d4091aa254ada84170, type: 2}
+  material: {fileID: 2100000, guid: 6221f2fbc7212d94cb9c069ee262d824, type: 2}
+  ScaleMultiplier: 1.5

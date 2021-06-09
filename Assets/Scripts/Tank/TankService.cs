@@ -38,10 +38,9 @@ public class TankService : MonoBehaviour
 
     public void CreateTank()
     {
-        GameObject tank = Instantiate(tankScriptable.tankPref,parent,true);
-        tank.transform.position = tankSpawn.position;
-        tank.transform.rotation = Quaternion.identity;
+        GameObject tank = Instantiate(tankScriptable.tankPref,tankSpawn.position,Quaternion.identity);
         tankController = tank.GetComponent<TankController>();
+        tankController.joystick = joystick;
         tankController.SetValues(tankScriptable);
         camControl.SetTarget(tankController.tankTransform);
     }

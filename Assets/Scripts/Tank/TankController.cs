@@ -5,19 +5,21 @@ using UnityStandardAssets.CrossPlatformInput;
 public class TankController: MonoBehaviour, IDamageable
 {
     //UI
-    private Joystick joystick;
+    public Joystick joystick;
     [SerializeField] private Slider healthSlider;
     
     //Input
     private float vertical;
     private float horizontal;
 
+    //Bullet
+    private BulletScriptable bulletScriptable;
 
     //Components
     private Rigidbody rigidBody;
     public MeshRenderer[] tankParts;
     
-    //ScriptableObject
+    //ScriptableObjectItems
     private TankType tankType;
     private float health;
     private float fireRate;
@@ -44,9 +46,9 @@ public class TankController: MonoBehaviour, IDamageable
 
     private void Start()
     {
-        TankService tankService = GetComponentInParent<TankService>();
+        bulletScriptable = BulletService.Instance.bulletType;
         rigidBody = GetComponent<Rigidbody>();
-        joystick = tankService.joystick;
+        
     }
 
     private void Update()
@@ -63,7 +65,7 @@ public class TankController: MonoBehaviour, IDamageable
         if (CrossPlatformInputManager.GetButtonDown("Fire"))
         {
 
-            BulletService.Instance.Fire(fireTransform);
+            BulletService.Instance.Fire(fireTransform, bulletScriptable);
         }
     }
 

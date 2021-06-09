@@ -30,22 +30,19 @@ public class GameService : MonoSingletonGeneric<GameService>
 
     private void InitialiseEnemy()
     {
-        enemyService.GetEnemyTankType();
-        enemyService.AssignEnemyTransforms();
+        EnemyService.Instance.GetEnemyTankType();
+        EnemyService.Instance.AssignEnemyTransforms();
     }
 
     private IEnumerator CreateWave(int wave)
     {
-        TankController tankController = FindObjectOfType<TankController>();
         noOfEnemies = GetNumberOfEnemies(wave);
         spawnTransformPoints = GetSpawnPoints();
         for (int i = 0; i < noOfEnemies; i++)
         {
             int noOfSpawnPoints = spawnTransformPoints.Count;
             int j = i % noOfSpawnPoints;
-            GameObject go = Instantiate(enemyService.enemyType.tankPref, spawnTransformPoints[j].position, Quaternion.identity);
-            EnemyController enemyController = go.GetComponent<EnemyController>();
-            enemyController.InitializeValues(enemyService.enemyType);
+            EnemyService.Instance.CreateEnemy(spawnTransformPoints[j]);
             yield return new WaitForSeconds(3);
         }
         while (noOfEnemies != 0)
@@ -61,7 +58,6 @@ public class GameService : MonoSingletonGeneric<GameService>
         nextWaveTextObject.SetActive(true);
         yield return new WaitForSeconds(3);
         nextWaveTextObject.SetActive(false);
-
         tankService.DestroyTank();
         NextWave();
     }

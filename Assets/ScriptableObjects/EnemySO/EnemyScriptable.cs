@@ -4,7 +4,7 @@
 
 public class EnemyScriptable : ScriptableObject
 {
-    public TankType tankType;
+    public EnemyType enemyType;
 
     public GameObject tankPref;
 
@@ -16,7 +16,15 @@ public class EnemyScriptable : ScriptableObject
 
     public float fireRate;
 
-    public float damage;
+    public float patrollingRadius;
+    
+    public float patrolTime;
+    
+    public float attackDistance;
+
+    public BulletScriptable bulletType;
 
     public Material material;
+
+    public float ScaleMultiplier = 1;
 }
