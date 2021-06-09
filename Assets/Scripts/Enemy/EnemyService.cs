@@ -24,7 +24,7 @@ public class EnemyService : MonoBehaviour
     {
         int rand = Random.Range(0, enemyTransformScriptableList.Count);
         enemyTransformScriptable = enemyTransformScriptableList[rand];
-        Debug.Log("enemy Transform" + enemyTransformScriptable.spawnPrefab.name);
+            
         SetYPosZero();
     }
 

@@ -13,7 +13,7 @@ public class GameService : MonoSingletonGeneric<GameService>
     private Text nextWaveText;
     public Transform parent;
     public int wave;
-
+    Coroutine coroutine;
     public EnemyService enemyService;
     public TankService tankService;
     private List<Transform> spawnTransformPoints;
@@ -25,7 +25,7 @@ public class GameService : MonoSingletonGeneric<GameService>
         wave = 1;
         InitialiseEnemy();
         tankService.StartTank();
-        StartCoroutine(CreateWave(wave));
+        coroutine = StartCoroutine(CreateWave(wave));
     }
 
     private void InitialiseEnemy()
@@ -43,10 +43,7 @@ public class GameService : MonoSingletonGeneric<GameService>
         {
             int noOfSpawnPoints = spawnTransformPoints.Count;
             int j = i % noOfSpawnPoints;
-            GameObject go = Instantiate(enemyService.enemyType.tankPref, parent ,true);
-            go.transform.position = spawnTransformPoints[j].position;
-            go.transform.rotation = Quaternion.identity;
-            
+            GameObject go = Instantiate(enemyService.enemyType.tankPref, spawnTransformPoints[j].position, Quaternion.identity);
             EnemyController enemyController = go.GetComponent<EnemyController>();
             enemyController.InitializeValues(enemyService.enemyType);
             yield return new WaitForSeconds(3);
@@ -71,10 +68,11 @@ public class GameService : MonoSingletonGeneric<GameService>
 
     private void NextWave()
     {
+        StopCoroutine(coroutine);
         wave++;
         InitialiseEnemy();
-        tankService.CreateTank();
-        StartCoroutine(CreateWave(wave));
+        tankService.StartTank();
+        coroutine = StartCoroutine(CreateWave(wave));
     }
 
     public List<Transform> GetSpawnPoints()

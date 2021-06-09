@@ -34,7 +34,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         if (health <= 0)
         {
             GameService.Instance.noOfEnemies -= 1;
-            Debug.Log("ENemies Left" + GameService.Instance.noOfEnemies);
+            
             explosionController.Explode(tankExplosionParticle);
             SoundManager.Instance.PlayEnemyTrack(tankExplosionAudio, 1, 10);
             Destroy(gameObject);
