@@ -123,7 +123,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1631146644076591304}
   m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.735, y: 1.553, z: 0.823}
+  m_LocalPosition: {x: 0, y: 1.55, z: 1.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1706988807661705412}
@@ -386,7 +386,7 @@ MonoBehaviour:
   tankExplosionAudio: {fileID: 8300000, guid: 5c27182a28a7eb942a362e6d198fe0e6, type: 3}
   explosionController: {fileID: 3041936570413375725, guid: ab7508d36bd38c34db485ef1f12b1cd3,
     type: 3}
-  navMeshAgent: {fileID: 0}
+  navMeshAgent: {fileID: 2438045476258790929}
 --- !u!195 &2438045476258790929
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -724,6 +724,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9065450250128873202}
   - component: {fileID: 8242662078415900433}
+  - component: {fileID: 6574829076392368076}
   m_Layer: 0
   m_Name: EnemyChase
   m_TagString: Untagged
@@ -758,6 +759,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyController: {fileID: 7037021150193543535}
+--- !u!135 &6574829076392368076
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2702752395572588721}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 20
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &2719963317837451185
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,7 +796,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2719963317837451185}
   m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8547745, y: -39.288486, z: 0.83003026}
+  m_LocalPosition: {x: 0.8547745, y: -1.1, z: 0.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 745463302537406064}
@@ -889,6 +903,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9053074570596248400}
   - component: {fileID: 4147478093841254235}
+  - component: {fileID: 2476012597112580307}
   m_Layer: 0
   m_Name: EnemyAttack
   m_TagString: Untagged
@@ -923,6 +938,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyController: {fileID: 7037021150193543535}
+--- !u!135 &2476012597112580307
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5332894077911891716}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &6001061920158971235
 GameObject:
   m_ObjectHideFlags: 0

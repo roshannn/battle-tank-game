@@ -22,6 +22,6 @@ MonoBehaviour:
   patrollingRadius: 30
   patrolTime: 5
   attackDistance: 10
-  bulletType: {fileID: 0}
+  bulletType: {fileID: 11400000, guid: 3ed11d20b28400d4091aa254ada84170, type: 2}
   material: {fileID: 2100000, guid: 2ebf33c8c66048e4392138d1501e6be3, type: 2}
   ScaleMultiplier: 1

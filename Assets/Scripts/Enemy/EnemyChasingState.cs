@@ -1,24 +1,25 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.Scripting;
 public class EnemyChasingState : EnemyStates
 {
     private bool canChase;
     public override void OnStateEnter()
     {
         base.OnStateEnter();
+        Debug.Log("In chasing mode");
         enemyController.activeState = EnemyState.Chasing;
-        StartCoroutine(Chase());
+        Chase();
     }
 
     public override void OnStateExit()
     {
         base.OnStateExit();
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (other.gameObject.GetComponent<TankController>() != null)
+        if (collider.gameObject.GetComponent<TankController>() != null)
         {
-            enemyController.SetTankController(other.gameObject.GetComponent<TankController>());
+            enemyController.SetTankController(collider.gameObject.GetComponent<TankController>());
             ChangeState(this);
         }
     }
@@ -29,7 +30,7 @@ public class EnemyChasingState : EnemyStates
 
         if (other.gameObject.GetComponent<TankController>() != null)
         {
-            StartCoroutine(Chase());
+            Chase();
         }
             
 
@@ -41,17 +42,16 @@ public class EnemyChasingState : EnemyStates
             ChangeState(enemyController.patrollingState);
         }
     }
-    
-    private IEnumerator Chase()
+
+    async private void Chase()
     {
         canChase = false;
 
         enemyController.navMeshAgent.isStopped = true;
         enemyController.navMeshAgent.ResetPath();
-        enemyController.navMeshAgent.SetDestination(enemyController.GetTankTransform().position);
-        yield return new WaitForSeconds(2);
+        enemyController.navMeshAgent.SetDestination(enemyController .GetTankTransform().position);
+        await new WaitForSeconds(2f);
 
         canChase = true;
-
     }
 }

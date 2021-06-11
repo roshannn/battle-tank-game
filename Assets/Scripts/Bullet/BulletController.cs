@@ -28,7 +28,7 @@ public class BulletController : MonoBehaviour
 
         Destroy(gameObject);
 
-        IDamageable _damage = collision .gameObject.GetComponent<IDamageable>();
+        IDamageable _damage = collision.gameObject.GetComponent<IDamageable>();
         if (_damage != null)
         {
             _damage.TakeDamage(damage);

@@ -25,7 +25,7 @@ public class GameService : MonoSingletonGeneric<GameService>
         wave = 1;
         InitialiseEnemy();
         tankService.StartTank();
-        coroutine = StartCoroutine(CreateWave(wave));
+        CreateWave(wave);
     }
 
     private void InitialiseEnemy()
@@ -34,7 +34,7 @@ public class GameService : MonoSingletonGeneric<GameService>
         EnemyService.Instance.AssignEnemyTransforms();
     }
 
-    private IEnumerator CreateWave(int wave)
+    async private void CreateWave(int wave)
     {
         noOfEnemies = GetNumberOfEnemies(wave);
         spawnTransformPoints = GetSpawnPoints();
@@ -43,20 +43,20 @@ public class GameService : MonoSingletonGeneric<GameService>
             int noOfSpawnPoints = spawnTransformPoints.Count;
             int j = i % noOfSpawnPoints;
             EnemyService.Instance.CreateEnemy(spawnTransformPoints[j]);
-            yield return new WaitForSeconds(3);
+            await new WaitForSeconds(5);
         }
         while (noOfEnemies != 0)
         {
-            yield return null;
+            continue;
         }
         int nextWave = wave + 1;
         waveOverText.text = "Wave " + wave + " Complete";
         waveOverTextObject.SetActive(true);
-        yield return new WaitForSeconds(3);
+        await new WaitForSeconds(3);
         waveOverTextObject.SetActive(false);
         nextWaveText.text = "Wave " + nextWave + " Starting";
         nextWaveTextObject.SetActive(true);
-        yield return new WaitForSeconds(3);
+        await new WaitForSeconds(3);
         nextWaveTextObject.SetActive(false);
         tankService.DestroyTank();
         NextWave();
@@ -68,7 +68,7 @@ public class GameService : MonoSingletonGeneric<GameService>
         wave++;
         InitialiseEnemy();
         tankService.StartTank();
-        coroutine = StartCoroutine(CreateWave(wave));
+        CreateWave(wave);
     }
 
     public List<Transform> GetSpawnPoints()
