@@ -5,7 +5,6 @@ public class EventService : MonoSingletonGeneric<EventService>
 {
     public event Action onEnemyDeath;
     public event Action onFire;
-    public event Action allEnemiesDead;
 
     
     public void InvokeEnemyKilledEvent()

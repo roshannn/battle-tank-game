@@ -19,8 +19,8 @@ public class GameService : MonoSingletonGeneric<GameService>
     private List<Transform> spawnTransformPoints;
     Coroutine createWave;
     public int enemiesLeft;
-    private bool checkForLevelCompletion = false;
     public SceneLoader sceneLoader;
+    
     async private void Start()
     {
         waveOverText = waveOverTextObject.GetComponent<Text>();
@@ -34,18 +34,13 @@ public class GameService : MonoSingletonGeneric<GameService>
         InitialiseEnemy();
         tankService.StartTank();
         await new WaitForSeconds(3);
-        StartCoroutine(CreateWave(wave));
+        coroutine = StartCoroutine(CreateWave(wave));
     }
-    private void Update()
-    {
-        if (enemiesLeft == 0&& checkForLevelCompletion)
-        {
-            EventService.Instance.allEnemiesDead += PreNextWave;
-        }
-    }
+    
 
     async private void PreNextWave()
     {
+        StopCoroutine(coroutine);
         int nextWave = wave + 1;
         waveOverText.text = "Wave " + wave + " Complete";
         waveOverTextObject.SetActive(true);
@@ -67,7 +62,6 @@ public class GameService : MonoSingletonGeneric<GameService>
 
     private IEnumerator CreateWave(int wave)
     {
-        checkForLevelCompletion = false;
         noOfEnemies = GetNumberOfEnemies(wave);
         enemiesLeft = noOfEnemies;
         spawnTransformPoints = GetSpawnPoints();
@@ -101,7 +95,7 @@ public class GameService : MonoSingletonGeneric<GameService>
     }
     private int GetNumberOfEnemies(int wave)
     {
-        return (wave * 2) + (wave / 2);
+        return wave + (wave % 2);
     }
 
     public void GameOverScene()
