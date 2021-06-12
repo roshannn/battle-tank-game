@@ -30,10 +30,19 @@ public class BulletService : MonoSingletonGeneric<BulletService>
         return damage;
     }
     public void Fire(Transform fireTransform,BulletScriptable bulletType)
-    {    
-        GameObject bullet = Instantiate(bulletType.bulletPref, fireTransform.position, fireTransform.rotation);
-        Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
-        bulletRigidbody.velocity = fireSpeed * fireTransform.forward;
+    {
+        GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject();
+        if (bullet != null)
+        {
+            bullet.transform.position = fireTransform.position;
+            bullet.transform.rotation = fireTransform.rotation;
+            bullet.SetActive(true);
+            Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+            bulletRigidbody.velocity = fireSpeed * fireTransform.forward;            
+        }
+        //GameObject bullet = Instantiate(bulletType.bulletPref, fireTransform.position, fireTransform.rotation);
+        //Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+        //bulletRigidbody.velocity = fireSpeed * fireTransform.forward;
     }
     
 }

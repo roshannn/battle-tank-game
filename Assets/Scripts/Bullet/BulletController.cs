@@ -25,8 +25,7 @@ public class BulletController : MonoBehaviour
     {
         explosionController.Explode(bulletExplosionParticle);
         SoundManager.Instance.PlaySoundAtTrack1(bulletExplode, 1f, 64, true);
-
-        Destroy(gameObject);
+        gameObject.SetActive(false);
 
         IDamageable _damage = collision.gameObject.GetComponent<IDamageable>();
         if (_damage != null)
