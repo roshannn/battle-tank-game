@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.SceneManagement;
 public class TankController: MonoBehaviour, IDamageable
 {
     //UI
@@ -44,12 +45,14 @@ public class TankController: MonoBehaviour, IDamageable
     private AudioClip tankDriving;
 
 
+
     private void Start()
     {
         bulletScriptable = BulletService.Instance.bulletType;
         rigidBody = GetComponent<Rigidbody>();
         
     }
+
 
     private void Update()
     {
@@ -64,14 +67,16 @@ public class TankController: MonoBehaviour, IDamageable
         horizontal = joystick.Horizontal;
         if (CrossPlatformInputManager.GetButtonDown("Fire"))
         {
-
+            
             BulletService.Instance.Fire(fireTransform, bulletScriptable);
+            EventService.Instance.InvokeFireEvent();
         }
     }
 
     public void Destroy()
     {
         Destroy(gameObject);
+        SceneManager.LoadScene(2);
     }
 
     private void PlayEngineSounds()
@@ -88,7 +93,6 @@ public class TankController: MonoBehaviour, IDamageable
     }
     private void FixedUpdate()
     {
-        
         Move(vertical);
         PlayEngineSounds();
         Turn(horizontal); 
@@ -130,6 +134,8 @@ public class TankController: MonoBehaviour, IDamageable
             SoundManager.Instance.PlaySoundAtTrack1(tankExplosion, 1, 10);
             explosionController.Explode(tankExplosionParticle);
             Destroy(gameObject);
+            GameService.Instance.GameOverScene();
         }
+
     }
 }

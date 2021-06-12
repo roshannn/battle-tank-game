@@ -11,6 +11,7 @@ public class EnemyService : MonoSingletonGeneric<EnemyService>
     public List<EnemyTransformScriptable> enemyTransformScriptableList;
     public EnemyTransformScriptable enemyTransformScriptable;
     public List<Transform> spawnTransformPoints = new List<Transform>();
+    public List<GameObject> enemyTankList;
    
     public void GetEnemyTankType()
     {
@@ -40,5 +41,6 @@ public class EnemyService : MonoSingletonGeneric<EnemyService>
         GameObject go = Instantiate(enemyType.tankPref, spawnPoint.position, Quaternion.identity);
         EnemyController enemyController = go.GetComponent<EnemyController>();
         enemyController.InitializeValues(enemyType);
+        enemyTankList.Add(go);
     }
 }

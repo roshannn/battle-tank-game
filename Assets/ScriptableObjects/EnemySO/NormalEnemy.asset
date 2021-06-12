@@ -18,7 +18,7 @@ MonoBehaviour:
   health: 40
   movementSpeed: 20
   turnSpeed: 20
-  fireRate: 0.5
+  fireRate: 3
   patrollingRadius: 30
   patrolTime: 5
   attackDistance: 10

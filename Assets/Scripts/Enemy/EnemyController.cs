@@ -95,12 +95,18 @@ public class EnemyController : MonoBehaviour, IDamageable
         if (health <= 0)
         {
             GameService.Instance.noOfEnemies -= 1;
-            
-            explosionController.Explode(tankExplosionParticle);
-            SoundManager.Instance.PlayEnemyTrack(tankExplosionAudio, 1, 10);
-            Destroy(gameObject);
+            EventService.Instance.InvokeEnemyKilledEvent();
+            DestroyEnemy();
         }
     }
+
+    public void DestroyEnemy()
+    {
+        explosionController.Explode(tankExplosionParticle);
+        SoundManager.Instance.PlayEnemyTrack(tankExplosionAudio, 1, 10);
+        Destroy(gameObject);
+    }
+
     public void InitializeValues(EnemyScriptable enemyType)
     {
         bulletType = enemyType.bulletType;

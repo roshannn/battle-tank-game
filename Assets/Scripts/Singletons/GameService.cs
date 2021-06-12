@@ -18,37 +18,34 @@ public class GameService : MonoSingletonGeneric<GameService>
     public TankService tankService;
     private List<Transform> spawnTransformPoints;
     Coroutine createWave;
-    private void Start()
+    public int enemiesLeft;
+    private bool checkForLevelCompletion = false;
+    public SceneLoader sceneLoader;
+    async private void Start()
     {
         waveOverText = waveOverTextObject.GetComponent<Text>();
         nextWaveText = nextWaveTextObject.GetComponent<Text>();
         wave = 1;
+        nextWaveText.text = "Wave " + wave + " Starting";
+        nextWaveTextObject.SetActive(true);
+        await new WaitForSeconds(2);
+        nextWaveTextObject.SetActive(false);
+        await new WaitForSeconds(1);
         InitialiseEnemy();
         tankService.StartTank();
-        CreateWave(wave);
+        await new WaitForSeconds(3);
+        StartCoroutine(CreateWave(wave));
+    }
+    private void Update()
+    {
+        if (enemiesLeft == 0&& checkForLevelCompletion)
+        {
+            EventService.Instance.allEnemiesDead += PreNextWave;
+        }
     }
 
-    private void InitialiseEnemy()
+    async private void PreNextWave()
     {
-        EnemyService.Instance.GetEnemyTankType();
-        EnemyService.Instance.AssignEnemyTransforms();
-    }
-
-    async private void CreateWave(int wave)
-    {
-        noOfEnemies = GetNumberOfEnemies(wave);
-        spawnTransformPoints = GetSpawnPoints();
-        for (int i = 0; i < noOfEnemies; i++)
-        {
-            int noOfSpawnPoints = spawnTransformPoints.Count;
-            int j = i % noOfSpawnPoints;
-            EnemyService.Instance.CreateEnemy(spawnTransformPoints[j]);
-            await new WaitForSeconds(5);
-        }
-        while (noOfEnemies != 0)
-        {
-            continue;
-        }
         int nextWave = wave + 1;
         waveOverText.text = "Wave " + wave + " Complete";
         waveOverTextObject.SetActive(true);
@@ -62,13 +59,39 @@ public class GameService : MonoSingletonGeneric<GameService>
         NextWave();
     }
 
+    private void InitialiseEnemy()
+    {
+        EnemyService.Instance.GetEnemyTankType();
+        EnemyService.Instance.AssignEnemyTransforms();
+    }
+
+    private IEnumerator CreateWave(int wave)
+    {
+        checkForLevelCompletion = false;
+        noOfEnemies = GetNumberOfEnemies(wave);
+        enemiesLeft = noOfEnemies;
+        spawnTransformPoints = GetSpawnPoints();
+        for (int i = 0; i < noOfEnemies; i++)
+        {
+            int noOfSpawnPoints = spawnTransformPoints.Count;
+            int j = i % noOfSpawnPoints;
+            EnemyService.Instance.CreateEnemy(spawnTransformPoints[j]);
+            yield return new WaitForSeconds(5);
+        }
+
+        while(noOfEnemies != 0)
+        {
+            yield return null;
+        }
+        PreNextWave();
+    }
+
     private void NextWave()
     {
-        StopCoroutine(coroutine);
         wave++;
         InitialiseEnemy();
         tankService.StartTank();
-        CreateWave(wave);
+        StartCoroutine(CreateWave(wave));
     }
 
     public List<Transform> GetSpawnPoints()
@@ -79,5 +102,10 @@ public class GameService : MonoSingletonGeneric<GameService>
     private int GetNumberOfEnemies(int wave)
     {
         return (wave * 2) + (wave / 2);
+    }
+
+    public void GameOverScene()
+    {
+        sceneLoader.LoadGameOverScene();
     }
 }

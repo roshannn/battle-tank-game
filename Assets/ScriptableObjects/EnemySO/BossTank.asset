@@ -24,4 +24,4 @@ MonoBehaviour:
   attackDistance: 15
   bulletType: {fileID: 11400000, guid: 6b9ba9aa8d6521a488b239bb83972090, type: 2}
   material: {fileID: 2100000, guid: 87d2e70ca18454e4f855f8d99afb32e3, type: 2}
-  ScaleMultiplier: 2
+  ScaleMultiplier: 1

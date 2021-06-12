@@ -16,4 +16,4 @@ MonoBehaviour:
   bulletPref: {fileID: 7474483915573828125, guid: a66c3613098284246b719c2b0340ee68,
     type: 3}
   speed: 40
-  damage: 10
+  damage: 2
