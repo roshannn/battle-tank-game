@@ -10,7 +10,9 @@ public class BulletService : MonoSingletonGeneric<BulletService>
 
     public BulletScriptable bulletType;
 
-   
+    [SerializeField]
+    private AudioClip bulletFire;
+
 
     private void Start()
     {
@@ -31,7 +33,8 @@ public class BulletService : MonoSingletonGeneric<BulletService>
     }
     public void Fire(Transform fireTransform,BulletScriptable bulletType)
     {
-        GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject();
+        SoundManager.Instance.PlaySoundAtTrack1(bulletFire, 1f, 64, true);
+        GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("bullet");
         if (bullet != null)
         {
             bullet.transform.position = fireTransform.position;

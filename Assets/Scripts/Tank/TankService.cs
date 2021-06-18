@@ -47,7 +47,7 @@ public class TankService : MonoBehaviour
 
     public void DestroyTank()
     {
-        tankController.Destroy();
+        tankController.DestroyTank();
     }
 
 }

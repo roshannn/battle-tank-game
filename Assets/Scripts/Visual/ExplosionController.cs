@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 
-public class ExplosionController : MonoBehaviour
+public class ExplosionController : MonoSingletonGeneric<ExplosionController>
 {
-    
-    public void Explode(ParticleSystem explosionParticle)
+
+    public void InstantiateEffects(GameObject Effects, Vector3 position)
     {
-        explosionParticle.transform.parent = null;
-        explosionParticle.Play();
-        Destroy(explosionParticle.gameObject, 2f);
+        GameObject gameObject = Instantiate(Effects, position, Quaternion.identity);
+        Destroy(gameObject, 1f);
     }
 }

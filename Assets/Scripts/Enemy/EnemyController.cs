@@ -37,11 +37,9 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     //AudioVisual
     [SerializeField]
-    private ParticleSystem tankExplosionParticle;
+    private GameObject tankExplosionParticle;
     [SerializeField]
     private AudioClip tankExplosionAudio;
-    [SerializeField]
-    private ExplosionController explosionController;
     private TankController tankController;
     public NavMeshAgent navMeshAgent;
 
@@ -102,9 +100,8 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     public void DestroyEnemy()
     {
-        explosionController.Explode(tankExplosionParticle);
         SoundManager.Instance.PlayEnemyTrack(tankExplosionAudio, 1, 10);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     public void InitializeValues(EnemyScriptable enemyType)

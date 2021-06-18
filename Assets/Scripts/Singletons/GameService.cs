@@ -38,7 +38,7 @@ public class GameService : MonoSingletonGeneric<GameService>
     }
     
 
-    async private void PreNextWave()
+    async private void WaveComplete()
     {
         StopCoroutine(coroutine);
         int nextWave = wave + 1;
@@ -77,7 +77,7 @@ public class GameService : MonoSingletonGeneric<GameService>
         {
             yield return null;
         }
-        PreNextWave();
+        WaveComplete();
     }
 
     private void NextWave()
@@ -95,6 +95,7 @@ public class GameService : MonoSingletonGeneric<GameService>
     }
     private int GetNumberOfEnemies(int wave)
     {
+        //return 6;
         return wave + (wave % 2);
     }
 

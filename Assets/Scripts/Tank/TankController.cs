@@ -34,9 +34,8 @@ public class TankController: MonoBehaviour, IDamageable
 
     //AudioVisual
     [SerializeField]
-    private ParticleSystem tankExplosionParticle;
-    [SerializeField]
-    private ExplosionController explosionController;
+    private GameObject tankExplosionParticle;
+    
     [SerializeField]
     private AudioClip tankExplosion;
     [SerializeField]
@@ -73,10 +72,9 @@ public class TankController: MonoBehaviour, IDamageable
         }
     }
 
-    public void Destroy()
+    public void DestroyTank()
     {
         Destroy(gameObject);
-        SceneManager.LoadScene(2);
     }
 
     private void PlayEngineSounds()
@@ -132,7 +130,6 @@ public class TankController: MonoBehaviour, IDamageable
         if (health <= 0)
         {
             SoundManager.Instance.PlaySoundAtTrack1(tankExplosion, 1, 10);
-            explosionController.Explode(tankExplosionParticle);
             Destroy(gameObject);
             GameService.Instance.GameOverScene();
         }

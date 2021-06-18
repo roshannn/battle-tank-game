@@ -5,27 +5,24 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     [SerializeField]
-    private ParticleSystem bulletExplosionParticle;
-    [SerializeField]
-    private ExplosionController explosionController;
+    private GameObject bulletExplosionParticle;
     [SerializeField]
     private AudioClip bulletExplode;
-    [SerializeField]
-    private AudioClip bulletFire;
+    
     float damage;
 
 
     private void Start()
     {
-        SoundManager.Instance.PlaySoundAtTrack1(bulletFire, 1f, 64, true);
+        
         damage = BulletService.Instance.SetDamage();
         Debug.Log("Damage of bullet is " + damage);
     }
     private void OnCollisionEnter(Collision collision)
     {
-        explosionController.Explode(bulletExplosionParticle);
-        SoundManager.Instance.PlaySoundAtTrack1(bulletExplode, 1f, 64, true);
+        
         gameObject.SetActive(false);
+        SoundManager.Instance.PlaySoundAtTrack1(bulletExplode, 1f, 64, true);
 
         IDamageable _damage = collision.gameObject.GetComponent<IDamageable>();
         if (_damage != null)
@@ -33,8 +30,6 @@ public class BulletController : MonoBehaviour
             _damage.TakeDamage(damage);
         }
     }
-
-
 
 }
 

@@ -11,7 +11,6 @@ public class EnemyService : MonoSingletonGeneric<EnemyService>
     public List<EnemyTransformScriptable> enemyTransformScriptableList;
     public EnemyTransformScriptable enemyTransformScriptable;
     public List<Transform> spawnTransformPoints = new List<Transform>();
-    public List<GameObject> enemyTankList;
    
     public void GetEnemyTankType()
     {
@@ -36,11 +35,18 @@ public class EnemyService : MonoSingletonGeneric<EnemyService>
         }
     }
 
-    internal void CreateEnemy(Transform spawnPoint)
+    public void CreateEnemy(Transform spawnPoint)
     {
-        GameObject go = Instantiate(enemyType.tankPref, spawnPoint.position, Quaternion.identity);
-        EnemyController enemyController = go.GetComponent<EnemyController>();
-        enemyController.InitializeValues(enemyType);
-        enemyTankList.Add(go);
+        GameObject enemy = ObjectPooler.SharedInstance.GetPooledObject("enemy");
+        if (enemy != null)
+        {
+            enemy.transform.position = spawnPoint.position;
+            enemy.transform.rotation = Quaternion.identity;
+            enemy.SetActive(true);
+            EnemyController enemyController = enemy.GetComponent<EnemyController>();
+            enemyController.InitializeValues(enemyType);
+        }
+        //GameObject go = Instantiate(enemyType.tankPref, spawnPoint.position, Quaternion.identity);
+
     }
 }

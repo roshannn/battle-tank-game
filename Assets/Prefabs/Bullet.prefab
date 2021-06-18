@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6235872987620240811}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,7 +111,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &6235872987620240811
 MonoBehaviour:
@@ -125,11 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a0e025040171574cb67108bc0168129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletExplosionParticle: {fileID: 6800116706344769258}
+  bulletExplosionParticle: {fileID: 6800116706360284972}
   explosionController: {fileID: 3041936570413375725, guid: ab7508d36bd38c34db485ef1f12b1cd3,
     type: 3}
   bulletExplode: {fileID: 8300000, guid: 3a77defcde1caaa40b6f7502547e0c4e, type: 3}
-  bulletFire: {fileID: 8300000, guid: 672a9941361ad494a99fba36759eca80, type: 3}
 --- !u!1001 &6800116706360372220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -187,15 +186,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89e78efe92dfe5a42837b392cdb0bf9e, type: 3}
---- !u!4 &6800116706359920310 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 486730, guid: 89e78efe92dfe5a42837b392cdb0bf9e,
+--- !u!1 &6800116706360284972 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 195792, guid: 89e78efe92dfe5a42837b392cdb0bf9e,
     type: 3}
   m_PrefabInstance: {fileID: 6800116706360372220}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &6800116706344769258 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 19807510, guid: 89e78efe92dfe5a42837b392cdb0bf9e,
+--- !u!4 &6800116706359920310 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 486730, guid: 89e78efe92dfe5a42837b392cdb0bf9e,
     type: 3}
   m_PrefabInstance: {fileID: 6800116706360372220}
   m_PrefabAsset: {fileID: 0}
