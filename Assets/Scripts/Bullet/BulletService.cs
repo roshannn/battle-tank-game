@@ -31,7 +31,7 @@ public class BulletService : MonoSingletonGeneric<BulletService>
     {
         return damage;
     }
-    public void Fire(Transform fireTransform,BulletScriptable bulletType)
+    public void Fire(Transform fireTransform,BulletScriptable bulletType,int layer)
     {
         SoundManager.Instance.PlaySoundAtTrack1(bulletFire, 1f, 64, true);
         GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("bullet");
@@ -39,6 +39,14 @@ public class BulletService : MonoSingletonGeneric<BulletService>
         {
             bullet.transform.position = fireTransform.position;
             bullet.transform.rotation = fireTransform.rotation;
+            if (layer == 8)
+            {
+                bullet.layer = 10;
+            }
+            else if (layer == 9)
+            {
+                bullet.layer = 11;
+            }
             bullet.SetActive(true);
             Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
             bulletRigidbody.velocity = fireSpeed * fireTransform.forward;            

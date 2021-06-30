@@ -66,8 +66,8 @@ public class TankController: MonoBehaviour, IDamageable
         horizontal = joystick.Horizontal;
         if (CrossPlatformInputManager.GetButtonDown("Fire"))
         {
-            
-            BulletService.Instance.Fire(fireTransform, bulletScriptable);
+
+            BulletService.Instance.Fire(fireTransform, bulletScriptable, gameObject.layer);
             EventService.Instance.InvokeFireEvent();
         }
     }

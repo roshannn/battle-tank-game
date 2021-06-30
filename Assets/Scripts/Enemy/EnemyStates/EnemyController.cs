@@ -54,7 +54,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         if (canFire < Time.time)
         {
             canFire = fireRate + Time.time;
-            BulletService.Instance.Fire(fireTransform, bulletType);
+            BulletService.Instance.Fire(fireTransform, bulletType, gameObject.layer);
         }
     }
 

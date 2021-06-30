@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1974575729596911000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FireTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 1706988807661705408}
   - component: {fileID: 1706988807658281106}
   - component: {fileID: 1706988807659412050}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TankTracksLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 1706988807661705410}
   - component: {fileID: 1706988807658281116}
   - component: {fileID: 1706988807659412060}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TankTracksRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 1706988807661306416}
   - component: {fileID: 1706988807661306417}
   - component: {fileID: 7744706910480954105}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tank
   m_TagString: player
   m_Icon: {fileID: 0}
@@ -279,8 +279,6 @@ MonoBehaviour:
   tankTransform: {fileID: 1706988807661705412}
   turretTransform: {fileID: 1706988807661705420}
   tankExplosionParticle: {fileID: 4536677909290531690}
-  explosionController: {fileID: 3041936570413375725, guid: ab7508d36bd38c34db485ef1f12b1cd3,
-    type: 3}
   tankExplosion: {fileID: 8300000, guid: 5c27182a28a7eb942a362e6d198fe0e6, type: 3}
   tankIdle: {fileID: 8300000, guid: 4932ab25b84dd7649b80af68a9660ddc, type: 3}
   tankDriving: {fileID: 8300000, guid: d7ca9fb5aa30155449192b23d7fb3336, type: 3}
@@ -295,7 +293,7 @@ GameObject:
   - component: {fileID: 1706988807661705414}
   - component: {fileID: 1706988807658281108}
   - component: {fileID: 1706988807659412052}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TankChassis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +372,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1706988807661705416}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TankRenderers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,7 +408,7 @@ GameObject:
   - component: {fileID: 1706988807661705420}
   - component: {fileID: 1706988807658281110}
   - component: {fileID: 1706988807659412054}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TankTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,9 +484,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1706988807661705412}
     m_Modifications:
+    - target: {fileID: 142696, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 151086, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
       propertyPath: m_Name
       value: TankExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 151086, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 182560, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 436668, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -660,6 +670,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4399801263531172697, guid: 8aa73ec68467cba4bbea591a22e7e4b9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632696339690341869, guid: 8aa73ec68467cba4bbea591a22e7e4b9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4726221125798290437, guid: 8aa73ec68467cba4bbea591a22e7e4b9,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -690,10 +710,25 @@ PrefabInstance:
       propertyPath: m_FillAmount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8119343985975111753, guid: 8aa73ec68467cba4bbea591a22e7e4b9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8253719972385192259, guid: 8aa73ec68467cba4bbea591a22e7e4b9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8910120074181508006, guid: 8aa73ec68467cba4bbea591a22e7e4b9,
         type: 3}
       propertyPath: m_Name
       value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 8910120074181508006, guid: 8aa73ec68467cba4bbea591a22e7e4b9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8aa73ec68467cba4bbea591a22e7e4b9, type: 3}

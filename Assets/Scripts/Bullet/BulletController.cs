@@ -23,7 +23,10 @@ public class BulletController : MonoBehaviour
         
         gameObject.SetActive(false);
         SoundManager.Instance.PlaySoundAtTrack1(bulletExplode, 1f, 64, true);
-
+        GameObject shellExplosion = ObjectPooler.SharedInstance.GetPooledObject("bulletexplosion");
+        shellExplosion.SetActive(true);
+        shellExplosion.GetComponent<ParticleSystem>().Play();
+        shellExplosion.SetActive(false);
         IDamageable _damage = collision.gameObject.GetComponent<IDamageable>();
         if (_damage != null)
         {
